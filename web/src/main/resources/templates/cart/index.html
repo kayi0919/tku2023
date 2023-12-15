@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+</head>
+    <body>
+        <header th:include="~{common/header}"></header>
+        <!-- side bar 功能-->
+        <div th:include="~{common/sidebar}"></div>
+
+
+
+            <div class="card">
+                <div class="card card-header container">
+                    <form th:action="@{/web/cart}" th:object="${cart}" class="needs-validation">
+                        <div class="alert alert-danger d-none" role="alert"></div>
+                        <div class="form-group row">
+                            <label for="record_seq" class="col-sm-2 col-form-label">編號</label>
+                            <div class="col-sm-10">
+                                <input class="form-control " id="record_seq" name="record_seq" th:value="*{record_seq}" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="product_name" class="col-sm-2 col-form-label">商品名稱</label>
+                            <div class="col-sm-10">
+                                <input class="form-control " id="product_name" name="product_name" th:maxlength="50" th:value="*{product_name}" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="product_price" class="col-sm-2 col-form-label">商品價錢</label>
+                            <div class="col-sm-10">
+                                <input class="form-control " id="product_price" name="product_price" th:value="*{product_price}" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="amount" class="col-sm-2 col-form-label">數量</label>
+                            <div class="col-sm-10">
+                                <input class="form-control " id="amount" name="amount" th:value="*{amount}" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-2 col-form-label">總計</label>
+                            <div class="col-sm-10">
+                                <input class="form-control " id="total" name="total" th:value="*{total}" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 align-items-center d-flex">
+                                <input class="btn btn-primary btn-lg" type="submit" value="查詢">
+                                <a class="btn btn-primary btn-lg" th:href="@{/web/cart/0}" >新增項目</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div th:include="~{cart/common/searchbody}"></div>
+
+
+            </div>
+        <script>
+            function deleteCart() {
+                if (confirm("確定要刪除嗎?")) {
+                    document.getElementById("action").value = "delete";
+                    document.getElementById("ajaxForm").submit();
+                }
+            }
+        </script>
+    </body>
+</html>
