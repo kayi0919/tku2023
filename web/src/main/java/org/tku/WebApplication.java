@@ -15,7 +15,7 @@ import org.tku.database.repository.UserRepository;
 @Component
 @EnableJpaRepositories
 public class WebApplication implements CommandLineRunner {
-
+//1221
     @Autowired
     private ApplicationContext applicationContext;
 
