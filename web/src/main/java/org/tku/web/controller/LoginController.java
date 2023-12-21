@@ -52,6 +52,11 @@ public class LoginController {
                              String email,
                            String action,
                              Model model) {
+        if (username == null || username.isEmpty() || realname == null || realname.isEmpty() ||
+                password == null || password.isEmpty() || email == null || email.isEmpty()) {
+            model.addAttribute("error", "請輸入資料");
+            return "/register";
+        }
         User user = new User();
         user.setUsername(username);
         user.setRealname(realname);
@@ -62,12 +67,5 @@ public class LoginController {
         return "redirect:/login";
     }
 
-    @GetMapping("/web/home")
-    public String home(@RequestParam(required = false) String locale,
-                        HttpServletRequest request, HttpServletResponse response){
-        if(StringUtils.isNotBlank(locale)){
-            localeResolver.setLocale(request, response, new Locale(locale));
-        }
-        return "home";
-    }
+
 }

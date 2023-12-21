@@ -13,6 +13,12 @@
             align-items: center;
             height: 100vh;
         }
+        .error-message {
+            font-weight: bold;
+            font-size: 1.2em; /* 放大字號 */
+            color: red; /* 設置為紅色 */
+        }
+
     </style>
 </head>
 
@@ -42,6 +48,9 @@
                     <a href="/login" class="btn btn-secondary">登入驗證</a>
                 </div>
             </form>
+            <div th:if="${error}" class="error-message">
+                <span th:text="${error}"></span>
+            </div>
         </div>
     </div>
 </div>

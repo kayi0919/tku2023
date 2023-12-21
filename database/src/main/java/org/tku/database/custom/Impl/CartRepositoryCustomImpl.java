@@ -34,7 +34,7 @@ public class CartRepositoryCustomImpl implements CartRepositoryCustom {
             }
 
             if (cart.getProduct_price() != null) {
-                predicates.add(cb.like(root.get("product_price"), "%" + cart.getProduct_price()));
+                predicates.add(cb.equal(root.get("product_price"), cart.getProduct_price()));
             }
 
             if (cart.getAmount() != null) {
