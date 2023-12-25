@@ -393,59 +393,79 @@
 
 </div>
 <!-- end main -->
+<!-- 7 -->
+    <div class="chart-box">
+        <ul>
+            <li th:each="record : ${purchaseRecords}">
+                <span th:text="${record.product_name}"></span>
+                <span th:text="${record.product_price}"></span>
+                <!-- 其他購買紀錄相關資料 -->
+            </li>
+        </ul>
+        <div class="chart-header">
+            <span>subtitle</span>
+            <h3 class="title">線條圖樣式</h3>
 
-<div>
-    <ul>
-        <li th:each="record : ${purchaseRecords}">
-            <span th:text="${record.product_name}"></span>
-            <!-- 其他購買紀錄相關資料 -->
-        </li>
-    </ul>
-</div>
+        </div>
+
+        <div class="chart-body">
+            <canvas id="myChart-7"></canvas>
+            <script th:inline="javascript">
 
 
-<!-- Chart Canvas -->
-<canvas id="purchaseChart" width="800" height="400"></canvas>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var purchaseRecords = /*[[${purchaseRecords}]]*/ [];
-
-        var productTotal = purchaseRecords.map(function (record) {
-            return record.total;
-        });
-
-        var productPrices = purchaseRecords.map(function (record) {
-            return record.product_price;
-        });
-
-        var ctx = document.getElementById('purchaseChart');
-        var myChart = new Chart(ctx, {
-            type: 'line', // 更改圖表類型為折線圖
-            data: {
-                labels: productTotal,
-                datasets: [{
-                    label: 'Product Prices',
-                    data: productPrices,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        min: 0, // y 軸最小值
-                        max: 20, // y 軸最大值
-                        ticks: {
-                            stepSize: 10 // 指定 y 軸間距為 50
+                var ctx = document.getElementById('myChart-7');
+                var myChart7 = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: /*[[${productNames}]]*/ [],
+                        // 使用Thymeleaf語法插入後端資料
+                        // labels: ['', '2020/02/17', '', '2020/02/23', '', '2020/02/29'],
+                        datasets: [{
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 3,
+                            label: '近期花費',
+                            data: /*[[${productTotal}]]*/ [],
+                            // 使用Thymeleaf語法插入後端資料
+                            // data: [2, 10, 5, 20, 10, 25],
+                            fill: true, // 是否填滿色彩
+                            pointStyle: 'rect', // 點點樣式
+                            pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            labels: {
+                                fontColor: '#333333' // 標籤顏色
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    color: '#F2F2F2' // X軸 線條顏色
+                                },
+                                ticks: {
+                                    fontColor: "#CCC" // X軸 文字顏色
+                                },
+                            }],
+                            yAxes: [{
+                                gridLines: {
+                                    color: '#F2F2F2' // Y軸 線條顏色
+                                },
+                                ticks: {
+                                    fontColor: "#CCC", // Y軸 文字顏色
+                                    beginAtZero: true // Y軸 從0開始
+                                },
+                            }]
                         }
                     }
-                }
-            }
-        });
-    });
+                });
+            </script>
+        </div>
+        <!-- end chart-body -->
 
-</script>
+    </div>
+    <!-- end chart-box -->
+
 </body>
 </html>

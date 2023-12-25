@@ -45,16 +45,23 @@ public class HomeController {
         // 創建兩個新的 ArrayList 以存放圖表的 x 軸和 y 軸資料
         List<String> productNames = new ArrayList<>();
         List<Long> productPrices = new ArrayList<>();
+        List<Long> productAmount = new ArrayList<>();
+        List<Long> productTotal = new ArrayList<>();
 
         // 將資料轉換成圖表所需的格式
         for (Cart record : purchaseRecords) {
             productNames.add(record.getProduct_name());
             productPrices.add(record.getProduct_price());
+            productAmount.add(record.getAmount());
+            productTotal.add(record.getTotal());
         }
 
         // 將資料加入Model中以供HTML頁面使用
         model.addAttribute("productNames", productNames);
         model.addAttribute("productPrices", productPrices);
+        model.addAttribute("productAmount", productAmount);
+        model.addAttribute("productTotal", productTotal);
+        model.addAttribute("purchaseRecords", purchaseRecords);
 
         return "statics"; // 回傳視圖名稱（HTML檔案名稱）
     }
