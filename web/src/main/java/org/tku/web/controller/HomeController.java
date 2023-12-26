@@ -13,9 +13,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.tku.database.entity.Cart;
 import org.tku.web.service.CartService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @Log4j2
@@ -39,22 +37,27 @@ public class HomeController {
 
     @GetMapping("/web/statics")
     public String getStatics(Model model) {
-        // 假設這個方法能夠從資料庫中取得所有購買紀錄
         List<Cart> purchaseRecords = cartService.getAllPurchaseRecords();
 
-        // 創建兩個新的 ArrayList 以存放圖表的 x 軸和 y 軸資料
-        List<String> productNames = new ArrayList<>();
-        List<Long> productPrices = new ArrayList<>();
-        List<Long> productAmount = new ArrayList<>();
-        List<Long> productTotal = new ArrayList<>();
+        Map<String, Long> productPricesMap = new HashMap<>();
+        Map<String, Long> productAmountMap = new HashMap<>();
+        Map<String, Long> productTotalMap = new HashMap<>();
 
-        // 將資料轉換成圖表所需的格式
+        // 整理相同名稱的商品價格、數量和總計
         for (Cart record : purchaseRecords) {
-            productNames.add(record.getProduct_name());
-            productPrices.add(record.getProduct_price());
-            productAmount.add(record.getAmount());
-            productTotal.add(record.getTotal());
+            String productName = record.getProduct_name();
+
+            // 將相同商品名稱的價格、數量和總計進行累加
+            productPricesMap.merge(productName, record.getProduct_price(), Long::sum);
+            productAmountMap.merge(productName, record.getAmount(), Long::sum);
+            productTotalMap.merge(productName, record.getTotal(), Long::sum);
         }
+
+        // 提取整理後的資料作為圖表所需資料
+        List<String> productNames = new ArrayList<>(productPricesMap.keySet());
+        List<Long> productPrices = new ArrayList<>(productPricesMap.values());
+        List<Long> productAmount = new ArrayList<>(productAmountMap.values());
+        List<Long> productTotal = new ArrayList<>(productTotalMap.values());
 
         // 將資料加入Model中以供HTML頁面使用
         model.addAttribute("productNames", productNames);
@@ -65,4 +68,5 @@ public class HomeController {
 
         return "statics"; // 回傳視圖名稱（HTML檔案名稱）
     }
+
 }
