@@ -52,7 +52,7 @@
                 display: block;
                 letter-spacing: 0.5px;
                 text-transform: uppercase;
-                color: #8898aa;
+                color: #8898aa; /*subtitle顏色*/
             }
 
             .chart-header h3.title {
@@ -64,7 +64,7 @@
             /*  黑色版本 dark
             /*------------------------------*/
             .chart-box.dark {
-                background-color: #172b4d;
+                background-color: #ffffff;  /*商品價錢背景顏色*/
             }
 
             .chart-header.dark {
@@ -72,7 +72,7 @@
             }
 
             .chart-header.dark h3.title {
-                color: #fff;
+                color: #000000;
             }
 
             /*------------------------------*/
@@ -114,7 +114,7 @@
                                 labels: /*[[${productNames}]]*/ [],
                                 datasets: [{
                                     backgroundColor: [
-                                        'rgba(100, 162, 235, 0.5)',
+                                        'rgba(100, 162, 235, 0.5)', // 淺藍色的背景顏色，這裡使用了 rgba 來設定顏色和透明度
                                         'rgba(54, 255, 235, 0.5)',
                                         'rgba(200, 162, 255, 0.5)',
                                         'rgba(54, 162, 235, 0.5)'
@@ -201,7 +201,7 @@
                                             color: '#c0c0c0' // 近期花費X軸 線條顏色
                                         },
                                         ticks: {
-                                            fontColor: "#000000" // 購買數量X軸 文字顏色
+                                            fontColor: "#c0c0c0" // 近期花費X軸 文字顏色
                                         },
                                     }],
                                     yAxes: [{
@@ -209,7 +209,7 @@
                                             color: '#c0c0c0' // 近期花費Y軸 線條顏色
                                         },
                                         ticks: {
-                                            fontColor: "#c0c0c0", // 近期花費Y軸 文字顏色
+                                            fontColor: "#000000", // 近期花費Y軸 文字顏色
                                             beginAtZero: true // Y軸 從0開始
                                         },
                                     }]
@@ -263,11 +263,28 @@
                                 }]
                             },
                             options: {
+                                legend: {
+                                    labels: {
+                                        fontColor: '#333333' // 標籤顏色
+                                    }
+                                },
                                 scales: {
-                                    yAxes: [{
+                                    xAxes: [{
+                                        gridLines: {
+                                            color: '#c0c0c0' // 購買數量X軸 線條顏色
+                                        },
                                         ticks: {
-                                            beginAtZero: true
-                                        }
+                                            fontColor: "#c0c0c0" // 購買數量X軸 文字顏色
+                                        },
+                                    }],
+                                    yAxes: [{
+                                        gridLines: {
+                                            color: '#c0c0c0' // 購買數量Y軸 線條顏色
+                                        },
+                                        ticks: {
+                                            fontColor: "#000000", // 購買數量Y軸 文字顏色
+                                            beginAtZero: true // Y軸 從0開始
+                                        },
                                     }]
                                 }
                             }
