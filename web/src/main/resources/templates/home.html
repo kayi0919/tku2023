@@ -20,6 +20,59 @@
             width: 100%;
             height: auto;
         }
+
+
+        .features {
+            display: flex;
+            background-color: #ede9db;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 100px 180px 80px;
+        }
+        .features div{
+            width: 300px;
+            text-align: center;
+        }
+        .features img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .features h3{
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .choose{
+            background-color:LightGray ;
+        }
+        .open{
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            background-color: white;
+            background-image: url('/img/貓背景.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .open h2{
+            font-size: 60px;
+        }
+        .open p{
+            color:#FEF7E6;
+            font-size:18px;
+            margin:25px 0;
+        }
+        .open a{
+            color: white;
+            text-decoration: none;
+            border:1px solid #ACACAC;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+
     </style>
 </head>
 <body style="background-color: #fffab9;">
@@ -28,14 +81,21 @@
     <div th:include="~{common/sidebar}"></div>
 
     <div>
+        <section class="open">
+            <h2>Take Pet寵物用品專賣店</h2>
+            <p>全方位毛孩健康首選— Take Pet— </p>
+            <p>Take Pet堅持不添加對寵物有害成分，提供寵物保健食品、清潔用品及護理產品，與您一同寵愛毛寶貝。</p>
+            <p><a href="#">瞭解更多</a></p>
+        </section>
+
         <div class="container ">
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <img th:src="@{/img/tkuim.png}" class="d-block w-100" alt="...">
+                        <img th:src="@{/img/廣告1.jpg}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img th:src="@{/img/神魔.png}" class="d-block w-100" alt="...">
+                        <img th:src="@{/img/廣告2.jpg}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="..." class="d-block w-100" alt="測試3">
@@ -50,9 +110,31 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <div>
-                測試
-            </div>
+
+            <section class="choose">
+                <header class="major">
+                    <hr/>
+                    <h2>我的銷售</h2>
+                </header>
+                <div class="features">
+                    <div>
+                        <img th:src="@{/img/待處理.png}" alt="待處理包裹">
+                        <h3>待處理包裹</h3>
+                    </div>
+                    <div>
+                        <img th:src="@{/img/待退貨.png}" alt="待退貨包裹">
+                        <h3>待退貨包裹</h3>
+                    </div>
+                    <div>
+                        <img th:src="@{/img/已處理.png}" alt="已處理包裹">
+                        <h3>已處理包裹</h3>
+                    </div>
+                    <div>
+                        <img th:src="@{/img/已售完.png}" alt="已售完包裹">
+                        <h3>已售完包裹</h3>
+                    </div>
+                </div>
+            </section>
 
         </div>
 
