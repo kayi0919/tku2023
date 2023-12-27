@@ -69,4 +69,10 @@ public class HomeController {
         return "statics"; // 回傳視圖名稱（HTML檔案名稱）
     }
 
+    @GetMapping("/web/about")
+    public String aboutUs() {
+        return "about"; // Assuming "about.html" is the name of the HTML file for the About Us page
+    }
+
+
 }
