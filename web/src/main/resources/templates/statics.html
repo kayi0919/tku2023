@@ -90,7 +90,7 @@
 
         </style>
     </head>
-    <body>
+    <body style="background-color: #fffab9;">
         <header th:include="~{common/header}"></header>
         <!-- side bar 功能-->
         <div th:include="~{common/sidebar}"></div>
@@ -198,18 +198,18 @@
                                 scales: {
                                     xAxes: [{
                                         gridLines: {
-                                            color: '#F2F2F2' // X軸 線條顏色
+                                            color: '#c0c0c0' // 近期花費X軸 線條顏色
                                         },
                                         ticks: {
-                                            fontColor: "#CCC" // X軸 文字顏色
+                                            fontColor: "#000000" // 購買數量X軸 文字顏色
                                         },
                                     }],
                                     yAxes: [{
                                         gridLines: {
-                                            color: '#F2F2F2' // Y軸 線條顏色
+                                            color: '#c0c0c0' // 近期花費Y軸 線條顏色
                                         },
                                         ticks: {
-                                            fontColor: "#CCC", // Y軸 文字顏色
+                                            fontColor: "#c0c0c0", // 近期花費Y軸 文字顏色
                                             beginAtZero: true // Y軸 從0開始
                                         },
                                     }]
