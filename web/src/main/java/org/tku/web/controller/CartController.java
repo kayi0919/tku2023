@@ -101,7 +101,9 @@ public class CartController {
                     cartRepository.save(cart);
                     break;
                 case "delete":
-                    cartRepository.deleteById(record_seq);
+                    if (record_seq != null) {
+                        cartRepository.deleteById(record_seq);
+                    }
             }
         }
         return "redirect:/web/cart";

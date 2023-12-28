@@ -26,7 +26,7 @@
                         <div class="form-group row">
                             <label for="record_seq" class="col-sm-2 col-form-label">編號</label>
                             <div class="col-sm-10">
-                                <input class="form-control " id="record_seq" name="record_seq" th:value="*{record_seq}" type="text" >
+                                <input class="form-control" id="record_seq" name="record_seq" th:value="*{record_seq}" type="text">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -56,7 +56,7 @@
                         <div class="form-group row">
                             <div class="col-sm-12 align-items-center d-flex">
                                 <input class="btn btn-primary btn-lg" type="submit" value="查詢">
-                                <a class="btn btn-primary btn-lg" th:href="@{/web/cart/0}" >新增項目</a>
+                                <a class="btn btn-primary btn-lg" th:href="@{/web/cart/0}">新增項目</a>
                             </div>
                         </div>
                     </form>
@@ -67,12 +67,31 @@
 
             </div>
         <script>
-            function deleteCart() {
-                if (confirm("確定要刪除嗎?")) {
-                    document.getElementById("action").value = "delete";
-                    document.getElementById("ajaxForm").submit();
+            function deleteCart(recordSeq) {
+                const confirmation = confirm("確定要刪除嗎?");
+                if (confirmation) {
+                    const form = document.createElement('form');
+                    form.setAttribute('method', 'post');
+                    form.setAttribute('action', '/web/cart');
+
+                    const hiddenField = document.createElement('input');
+                    hiddenField.setAttribute('type', 'hidden');
+                    hiddenField.setAttribute('name', 'record_seq');
+                    hiddenField.setAttribute('value', recordSeq);
+
+                    const actionField = document.createElement('input');
+                    actionField.setAttribute('type', 'hidden');
+                    actionField.setAttribute('name', 'action');
+                    actionField.setAttribute('value', 'delete');
+
+                    form.appendChild(hiddenField);
+                    form.appendChild(actionField);
+
+                    document.body.appendChild(form);
+                    form.submit();
                 }
             }
+
 
             function calculateTotal() {
                 const productPrice = parseFloat(document.getElementById('product_price').value);

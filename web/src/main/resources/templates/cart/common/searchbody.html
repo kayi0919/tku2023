@@ -27,10 +27,19 @@
             <td class="text-center align-middle" th:text="${cart.product_price}"></td>
             <td class="text-center align-middle" th:text="${cart.amount}"></td>
             <td class="text-center align-middle" th:text="${cart.total}"></td>
+            <!-- 在表格中為刪除按鈕添加資料 ID -->
+            <!-- 在表格中為刪除按鈕添加資料 ID -->
             <td class="text-center align-middle">
                 <a th:href="@{'/web/cart/' + ${cart.record_seq}}" class="btn btn-primary">修改</a>
-                <input class="btn btn-primary" type="button" value="刪除" onclick="deleteCart()">
+                <form th:action="@{/web/cart}" method="post" onsubmit="return confirm('確定要刪除嗎?')">
+                    <input type="hidden" name="record_seq" th:value="${cart.record_seq}" />
+                    <input type="hidden" name="action" value="delete" />
+                    <button class="btn btn-primary" type="submit">刪除</button>
+                </form>
             </td>
+
+
+
         </tr>
         <tr th:if="!carts">
             <td class="text-center align-middle" colspan="5"> No Data </td>
