@@ -22,26 +22,30 @@
         .success-message {
             color: green;
         }
+
     </style>
 </head>
 <body style="background-color: #fffab9;">
 <header th:include="~{common/header}"></header>
 <!-- side bar 功能-->
 <div th:include="~{common/sidebar}"></div>
-<div class="container">
+<div class="container" style="text-align: center;">
     <h1>上傳檔案</h1>
-    <form action="#" th:action="@{/web/upload}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-        <div class="form-group">
-            <label for="fileInput">選擇檔案：</label>
-            <input type="file" class="form-control-file" id="fileInput" name="file">
+    <form action="#" th:action="@{/web/upload}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" style="display: flex; flex-direction: column; align-items: center;">
+        <div style="margin-bottom: 10px;">
+            <input type="file" class="form-control-file" id="fileInput" name="file" style="width: 60%; margin: 0 auto;">
         </div>
-        <button type="submit" class="btn btn-primary">上傳檔案</button>
+        <div>
+            <button type="submit" class="btn btn-primary">上傳檔案</button>
+        </div>
     </form>
 
     <div th:if="${message}" class="alert alert-success" role="alert">
         檔案上傳成功
     </div>
 </div>
+
+
 
 <script>
     function validateForm() {
