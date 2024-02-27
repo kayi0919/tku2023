@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+</head>
+<body>
+    <header th:include="~{user/common/header}"></header>
+    <!-- 側邊欄功能 -->
+    <div th:include="~{user/common/sidebar}"></div>
+    <div class="row">
+        <a class="card" style="width: 18rem; text-decoration: none;" data-bs-toggle="modal" data-bs-target="#shopform" >
+            <img th:src="@{/img/shop/羽球桶吊飾_1.png}" class="card-img-top" alt="...">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">羽球桶造型吊飾</li>
+                <li class="list-group-item">$400</li>
+            </ul>
+        </a>
+
+        <a class="card" style="width: 18rem; text-decoration: none;" data-bs-toggle="modal" data-bs-target="#shopform" >
+            <img th:src="@{/img/shop/羽球桶吊飾_2.png}" class="card-img-top" alt="...">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">羽球桶吊飾</li>
+                <li class="list-group-item">$300</li>
+            </ul>
+        </a>
+
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="shopform" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    test1
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="row g-3 needs-validation" novalidate>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">商品</label>
+                <select class="form-select" id="validationCustom01" name="validationCustom01" required>
+                    <option value="" disabled selected hidden>選擇商品</option>
+                    <option value="1">羽球桶吊飾</option>
+                    <option value="2">羽球桶造型</option>
+
+                </select>
+
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">價錢</label>
+                <select class="form-select" id="validationCustom02" name="validationCustom02" required>
+                    <option value="" disabled selected hidden>選擇價錢</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="validationCustom03" class="form-label">數量</label>
+                <select class="form-select" id="validationCustom03" name="validationCustom03" required>
+                    <option value="" disabled selected hidden>選擇數量</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom04" class="form-label">類型</label>
+                <select class="form-select" id="validationCustom04" name="validationCustom04" required>
+                    <option value="" disabled selected hidden>選擇商品</option>
+                    <option value="1">羽球桶吊飾</option>
+                    <option value="2">羽球桶造型</option>
+
+                </select>
+
+            </div>
+
+<!--            <div class="col-md-4">-->
+<!--                <label for="validationCustom05" class="form-label">上傳圖片</label>-->
+<!--                <input type="file" class="form-control" id="validationCustom05" name="validationCustom05" required>-->
+<!--                &lt;!&ndash; 如果您希望將標籤顯示為按鈕，您可以使用以下代碼 &ndash;&gt;-->
+<!--                &lt;!&ndash; <label class="btn btn-primary">-->
+<!--                    上傳圖片 <input type="file" style="display: none;">-->
+<!--                </label> &ndash;&gt;-->
+<!--                <div class="invalid-feedback">-->
+<!--                    請上傳圖片。-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+        </div>
+
+
+
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">送出</button>
+        </div>
+    </form>
+
+
+</body>
+</html>

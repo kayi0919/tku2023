@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包裹事項清單</title>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        .announcement {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 修改卡片標題和內容的字體大小 */
+        .card-title{
+            font-size: 16px;
+        }
+        .card-text {
+            font-size: 12px; /* 這裡設置你想要的字體大小 */
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <a th:href="@{/web/announcement/createlist}" th:text="新增公告" class="btn btn-primary"></a>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>公告清單</h1>
+            <div class="announcement bg-primary-subtle">
+                <h3>重要公告</h3>
+                <!-- 重要公告部分的 HTML -->
+                <div th:each="announcement : ${announcements}" th:if="${announcement.atype == '重要公告'}">
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="card-title">標題: <span th:text="${announcement.atitle}"></span></h4>
+                                <p class="card-text">內容: <span th:text="${announcement.acontent}"></span></p>
+                            </div>
+                            <form th:action="@{/web/orderlist/delete}" method="post" onsubmit="return confirm('確定要刪除嗎?')">
+                                <input type="hidden" name="announcement_id" th:value="${announcement.announcement_id}" />
+                                <button class="btn btn-danger" type="submit">刪除</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement bg-info-subtle">
+                <h3>活動通知</h3>
+                <!-- 活動通知部分的 HTML -->
+                <div th:each="announcement : ${announcements}" th:if="${announcement.atype == '活動通知'}">
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="card-title">標題: <span th:text="${announcement.atitle}"></span></h4>
+                                <p class="card-text">內容: <span th:text="${announcement.acontent}"></span></p>
+                            </div>
+                            <form th:action="@{/web/orderlist/delete}" method="post" onsubmit="return confirm('確定要刪除嗎?')">
+                                <input type="hidden" name="announcement_id" th:value="${announcement.announcement_id}" />
+                                <button class="btn btn-danger" type="submit">刪除</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement bg-primary">
+                <h3>系統更新</h3>
+                <!-- 系統更新部分的 HTML -->
+                <div th:each="announcement : ${announcements}" th:if="${announcement.atype == '系統更新'}">
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="card-title">標題: <span th:text="${announcement.atitle}"></span></h4>
+                                <p class="card-text">內容: <span th:text="${announcement.acontent}"></span></p>
+                            </div>
+                            <form th:action="@{/web/orderlist/delete}" method="post" onsubmit="return confirm('確定要刪除嗎?')">
+                                <input type="hidden" name="announcement_id" th:value="${announcement.announcement_id}" />
+                                <button class="btn btn-danger" type="submit">刪除</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h1>我的表現</h1>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <!-- 標籤分頁的 HTML -->
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">客戶服務</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">訂單表現</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">客戶滿意度</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <!-- 標籤分頁內容的 HTML -->
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">指標</th>
+                            <th scope="col">我的賣場</th>
+                            <th scope="col">目標</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <th scope="row">回應率</th>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">回應速度</th>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">指標</th>
+                            <th scope="col">我的賣場</th>
+                            <th scope="col">目標</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        <tr>
+                            <th scope="row">未完成率</th>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">延遲出貨率</th>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">實際出貨率</th>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">指標</th>
+                            <th scope="col">我的賣場</th>
+                            <th scope="col">目標</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        <tr>
+                            <th scope="row">賣場總評價</th>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    function deleteAnnouncement(button) {
+        var announcementId = button.getAttribute('data-id');
+
+        if (confirm('確定要刪除此公告嗎？')) {
+            fetch('/web/announcement/' + announcementId, {
+                method: 'DELETE'
+            })
+                .then(function(response) {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('刪除失敗');
+                    }
+                })
+                .then(function(data) {
+                    alert(data);
+                    window.location.reload();
+                })
+                .catch(function(error) {
+                    console.error('出錯了:', error);
+                    alert('刪除失敗');
+                });
+        }
+    }
+</script>
+</body>
+</html>

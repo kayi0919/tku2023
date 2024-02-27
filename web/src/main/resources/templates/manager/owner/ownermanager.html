@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>賣家管理</title>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<header th:include="~{manager/common/header}"></header>
+<!-- side bar 功能-->
+<div th:include="~{manager/common/sidebar}"></div>
+
+
+<a href="/web/owner/insert" class="btn btn-secondary" >新增商品</a>
+
+<div class="card card-body">
+    <table class="table table-striped table-hover" id="dataTables2">
+        <thead>
+        <tr>
+            <th class="text-center align-middle">編號</th>
+            <th class="text-center align-middle">商品名稱</th>
+            <th class="text-center align-middle">商品價錢</th>
+            <th class="text-center align-middle">數量</th>
+            <th class="text-center align-middle">類型</th>
+            <th class="text-center align-middle">圖片</th>
+            <th class="text-center align-middle">功能</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}" th:if="products">
+                <td class="text-center align-middle" th:text="${product.products_no}"></td>
+                <td class="text-center align-middle" th:text="${product.products_name}"></td>
+                <td class="text-center align-middle" th:text="${product.products_price}"></td>
+                <td class="text-center align-middle" th:text="${product.products_amount}"></td>
+                <td class="text-center align-middle" th:text="${product.products_type}"></td>
+                <!--ERROR 圖片問題-->
+                <td class="text-center align-middle" th:text="${product.products_byte}"></td>
+
+
+<!--                <td class="text-center align-middle">-->
+<!--                    <img th:src="'data:image/png;base64,' + ${#strings.bytesToBase64(product.products_byte)}"-->
+<!--                         style="max-width: 100px; max-height: 100px;" />-->
+<!--                </td>-->
+                <td class="text-center align-middle">
+                    <a th:href="@{'/web/owner/' + ${product.products_no}}" class="btn btn-primary">修改</a>
+                    <form th:action="@{/web/owner/}" method="post" onsubmit="return confirm('確定要刪除嗎?')">
+                        <input type="hidden" name="products_no" th:value="${product.products_no}" />
+                        <input type="hidden" name="action" value="delete" />
+                        <button class="btn btn-primary" type="submit">刪除</button>
+                    </form>
+                </td>
+
+            </tr>
+            <tr th:if="${#lists.isEmpty(products)}">
+                <td class="text-center align-middle" colspan="6"> No Data </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<header th:include="~{manager/common/header}"></header>
+<!-- side bar 功能-->
+<div th:include="~{manager/common/sidebar}"></div>
+
+<form id="announcementForm" method="post" th:action="@{/web/announcement/createlist}" onsubmit="showMessage()" >
+    <div class="mb-3">
+        <label for="atype" class="form-label">公告類型</label>
+        <select class="form-select" id="atype" name="atype" required>
+            <option value="">請選擇公告類型</option>
+            <option value="重要公告">重要公告</option>
+            <option value="活動通知">活動通知</option>
+            <option value="系統更新">系統更新</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="atitle" class="form-label">公告標題</label>
+        <textarea class="form-control" id="atitle" name="atitle" rows="1" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="acontent" class="form-label">公告內容</label>
+        <textarea class="form-control" id="acontent" name="acontent" rows="4" required></textarea>
+    </div>
+
+    <!-- 添加隱藏的input元素來儲存使用者名稱 -->
+    <input type="hidden" id="username" name="username" th:value="${username}" />
+
+    <button type="submit" class="btn btn-primary">送出</button>
+</form>
+</body>
+
+<script>
+    function showMessage() {
+        alert("成功送出資料！");
+    }
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包裹事項清單</title>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        /* 自定義樣式 */
+        .custom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chart-body {
+            display: inline-block;
+            width: 80%; /* 圖表本身寬度 */
+            margin-top: 20px; /* 上方間距 */
+            margin-bottom: 20px; /* 下方間距 */
+        }
+        .chart-box {
+            width: 60%; /* 圖表容器寬度 */
+            margin: 0 auto; /* 水平置中 */
+            text-align: center; /* 內容置中 */
+        }
+
+        /* 移除連結的底線 */
+        a.card {
+            text-decoration: none;
+        }
+
+        /* 讓連結內的數字顏色為藍色 */
+        a.card .card-title:first-child {
+            color: blue;
+        }
+
+
+    </style>
+</head>
+    <body>
+        <header th:include="~{manager/common/header}"></header>
+        <!-- side bar 功能-->
+        <div th:include="~{manager/common/sidebar}"></div>
+
+
+        <!--待辦事項清單-->
+
+
+        <div th:include="~{manager/orderlistdata/common/staticcenter}"></div>
+        <div th:include="~{manager/orderlistdata/common/announcementlist}"></div>
+
+        <div th:if="${deleteFailed}">
+            <p>刪除失敗，請重試。</p>
+        </div>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>包裹事項清單</title>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        .custom-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .card {
+            width: 10rem;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="chart-box">
+                <div class="chart-header">
+                    <span>subtitle</span>
+                    <h3 class="title">近期花費</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="myChart-5" width="400" height="200"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart-5');
+                        var myChart7 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                // 使用Thymeleaf語法插入後端資料
+                                labels: ['', '2020/02/17', '', '2020/02/23', '', '2020/02/29'],
+                                datasets: [{
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 3,
+                                    label: '近期花費',
+                                    // 使用Thymeleaf語法插入後端資料
+                                    data: [2, 10, 5, 20, 10, 25],
+                                    fill: true, // 是否填滿色彩
+                                    pointStyle: 'rect', // 點點樣式
+                                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    labels: {
+                                        fontColor: '#333333' // 標籤顏色
+                                    }
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        gridLines: {
+                                            color: '#F2F2F2' // X軸 線條顏色
+                                        },
+                                        ticks: {
+                                            fontColor: "#CCC" // X軸 文字顏色
+                                        },
+                                    }],
+                                    yAxes: [{
+                                        gridLines: {
+                                            color: '#F2F2F2' // Y軸 線條顏色
+                                        },
+                                        ticks: {
+                                            fontColor: "#CCC", // Y軸 文字顏色
+                                            beginAtZero: true // Y軸 從0開始
+                                        },
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="custom-container">
+                <div class="row">
+                    <div class="col-12">
+                        <a th:href="@{/web/orderprocess/pending}" class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">0</h5>
+                                <h5 class="card-title">待付款訂單</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a th:href="@{/web/orderprocess/processed}" class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">0</h5>
+                                <h5 class="card-title">待處理訂單</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a th:href="@{/web/orderprocess/returning}" class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">0</h5>
+                                <h5 class="card-title">已處理訂單</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a th:href="@{/web/orderprocess/soldout}" class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">0</h5>
+                                <h5 class="card-title">待取消訂單</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

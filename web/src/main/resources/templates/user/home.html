@@ -1,0 +1,212 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <style>
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            height: auto;
+        }
+
+
+        .features {
+            display: flex;
+            background-color: #D4ACBD;
+            border-color: white;
+            border-width:3px;
+            border-style:solid;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 100px 180px 80px;
+        }
+        .features div{
+            color: white;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .features img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .features h3{
+            font-size: 25px;
+            margin: 20px 0;
+        }
+
+        .open{
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 95vh;
+            background-color: white;
+            background-image: url('/img/貓背景.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .open h2{
+            font-size: 60px;
+        }
+        .open p{
+            color:#FEF7E6;
+            font-size:18px;
+            margin:25px 0;
+        }
+        .open a{
+            color: white;
+            text-decoration: none;
+            border:1px solid #ACACAC;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .major{
+            text-align: center;
+            background-color: #ffd6e0;
+            background-position: center;
+            border-color: #ffd6e0;
+        }
+        .newsletter{
+            background-color: #485652;
+            color:white;
+            padding:60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .newsletter p{
+            margin-bottom: 20px;
+        }
+        .newsletter input, .newsletter button{
+            background-color: transparent;
+            color:white;
+            border: 1px solid #949d9a;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .newsletter input{
+            width:200px;
+            margin-right: 15px;
+        }
+        input::placeholder{
+            color:#DDDDDD;
+        }
+        input:focus{
+            outline: none;
+            border-color: #E0E9A3;
+        }
+        .newsletter button{
+            width:80px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body style="background-color: #fffab9;">
+    <header th:include="~{user/common/header}"></header>
+    <!-- side bar 功能-->
+    <div th:include="~{user/common/sidebar}"></div>
+
+    <div>
+        <section class="open">
+            <h2>Take Pet寵物用品專賣店</h2>
+            <p>全方位毛孩健康首選— Take Pet— </p>
+            <p>Take Pet堅持不添加對寵物有害成分，提供寵物保健食品、清潔用品及護理產品，與您一同寵愛毛寶貝。</p>
+            <p><a href="/web/about">瞭解更多</a></p>
+        </section>
+
+        <div class="container ">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img th:src="@{/img/廣告1.jpg}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img th:src="@{/img/廣告2.jpg}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <section class="choose">
+                <header class="major">
+                    <hr/>
+                    <h2>我的銷售</h2>
+                </header>
+                <div class="features">
+                    <div>
+                        <button> <img th:src="@{/img/待處理.png}" alt="待處理包裹"></button>
+                        <h3>待處理包裹</h3>
+                    </div>
+                    <div>
+                        <button><img th:src="@{/img/待退貨.png}" alt="待退貨包裹"></button>
+                        <h3>待退貨包裹</h3>
+                    </div>
+                    <div>
+                        <button><img th:src="@{/img/已處理.png}" alt="已處理包裹"></button>
+                        <h3>已處理包裹</h3>
+                    </div>
+                    <div>
+                        <button><img th:src="@{/img/已售完.png}" alt="已售完包裹"></button>
+                        <h3>已售完包裹</h3>
+                    </div>
+                </div>
+            </section>
+            <section class="newsletter">
+                <p>歡迎訂閱TakePet電子報，可不定期收到限定優惠喔!</p>
+                <form>
+                    <input type="email" placeholder="請輸入您的 Email" required>
+                    <button type="submit">送出</button>
+                </form>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script>
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+
+        let slideIndex = 0;
+        let slideWidth = images[0].clientWidth; // 取得圖片寬度，假設所有圖片寬度相同
+
+        function showSlide(index) {
+            slides.style.transition = 'transform 0.5s ease-in-out';
+            slides.style.transform = `translateX(${-index * slideWidth}px)`;
+        }
+
+        function nextSlide() {
+            if (slideIndex < images.length - 1) {
+                slideIndex++;
+            } else {
+                slideIndex = 0;
+            }
+            showSlide(slideIndex);
+        }
+
+        setInterval(nextSlide, 3000); // 每 3 秒切換一張圖片
+    </script>
+
+</body>
+</html>

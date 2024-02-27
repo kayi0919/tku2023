@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>待付款訂單</title>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+    <body>
+        <header th:include="~{manager/common/header}"></header>
+        <!-- side bar 功能-->
+        <div th:include="~{manager/common/sidebar}"></div>
+
+        <div class="col-md-6">
+            <h1>我的表現</h1>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <!-- 標籤分頁的 HTML -->
+                    <button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="true">待付款</button>
+                    <button class="nav-link" id="processed-tab" data-bs-toggle="tab" data-bs-target="#processed" type="button" role="tab" aria-controls="processed" aria-selected="false">待處理</button>
+                    <button class="nav-link" id="soldout-tab" data-bs-toggle="tab" data-bs-target="#soldout" type="button" role="tab" aria-controls="soldout" aria-selected="false">已處理</button>
+                    <button class="nav-link" id="cancel-tab" data-bs-toggle="tab" data-bs-target="#cancel" type="button" role="tab" aria-controls="cancel" aria-selected="false">待取消</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <!-- 標籤分頁內容的 HTML -->
+                <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab" tabindex="0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">買家名稱</th>
+                                <th scope="col">商品</th>
+                                <th scope="col">買家實付金額</th>
+                                <th scope="col">狀態</th>
+                                <th scope="col">表單收到時間</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="order : ${orders}" th:if="orders">
+                                <td class="text-center align-middle" th:text="${order.username}"></td>
+                                <td class="text-center align-middle" th:text="${order.orders_product_name}"></td>
+                                <td class="text-center align-middle" th:text="${order.orders_total}"></td>
+                                <td class="text-center align-middle" th:text="${order.operation}"></td>
+                                <td class="text-center align-middle" th:text="${order.received_time}"></td>
+
+                                <td class="text-center align-middle">
+                                    <a th:href="@{'/manager/orderprocess/pending/' + ${order.orderId}}" class="btn btn-primary">修改</a>
+                                    <form th:action="@{/manager/orderprocess/pending/}" method="post" onsubmit="return confirm('確定要刪除嗎?')">
+                                        <input type="hidden" name="orderId" th:value="${order.orderId}" />
+                                        <input type="hidden" name="action" value="delete" />
+                                        <button class="btn btn-primary" type="submit">刪除</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+
+                            <tr th:if="!orders">
+                                <td class="text-center align-middle" colspan="5"> No Data </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <div class="tab-pane fade" id="processed" role="tabpanel" aria-labelledby="processed-tab" tabindex="0">
+
+
+                </div>
+
+                <div class="tab-pane fade" id="soldout" role="tabpanel" aria-labelledby="soldout-tab" tabindex="0">
+
+
+                </div>
+
+                <div class="tab-pane fade" id="cancel" role="tabpanel" aria-labelledby="cancel-tab" tabindex="0">
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </body>
+</html>

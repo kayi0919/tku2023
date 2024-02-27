@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>歡迎</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <script th:src="@{/js/bootstrap.min.js}" ></script>
+
+        <style>
+            .centered-form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+        </style>
+    </head>
+
+    <body style="padding: 15px; background-image: url('/img/狗狗封面.jpg'); background-size: cover;">
+        <div>
+            <div class="container">
+                <div class="centered-form ">
+                    <div class="table-container">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>
+                                    <img th:src="@{/img/狗商店.jpg}" alt="...">
+                                </td>
+
+                            </tr>
+                        </table>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <a href="/login"
+                               class="btn btn-primary btn-lg btn-login ">進入登入驗證</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

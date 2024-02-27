@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>新增商品</title>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+
+  <style>
+    /* 在這裡添加你的自定義樣式 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .form-label {
+      color: #495057;
+    }
+    .form-control {
+      border-color: #ced4da;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header th:include="~{manager/common/header}"></header>
+  <!-- side bar 功能-->
+  <div th:include="~{manager/common/sidebar}"></div>
+
+
+  <form id="productsForm" method="post" th:action="@{/web/owner/insert}" onsubmit="showMessage()">
+    <div class="row">
+      <div class="col-md-4 position-relative">
+        <label for="products_name" class="form-label">商品名稱</label>
+        <input type="text" class="form-control" id="products_name" name="products_name" required>
+
+      </div>
+      <div class="col-md-4 position-relative">
+        <label for="products_price" class="form-label">價錢</label>
+        <input type="text" class="form-control" id="products_price" name="products_price" required>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 position-relative">
+        <label for="products_amount" class="form-label">數量</label>
+        <input type="number" class="form-control" id="products_amount" name="products_amount" value="0" required>
+      </div>
+
+
+      <div class="col-md-4 position-relative">
+        <label for="products_type" class="form-label">類別</label>
+        <select class="form-select" id="products_type" name="products_type" required>
+          <option selected disabled value="">選擇類別</option>
+          <option>點心</option>
+          <option>材料</option>
+          <option>飲料</option>
+          <option>其他</option>
+        </select>
+
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="products_byte" class="form-label">檔案上傳</label>
+      <input class="form-control" type="file" id="products_byte" name="products_byte" accept="image/*" multiple onchange="previewImages(event)">
+      <div id="imagePreview"></div>
+    </div>
+
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">新增</button>
+      <a href="/web/owner" class="btn btn-secondary" >返回</a>
+    </div>
+
+
+  </form>
+
+</body>
+
+<script>
+  document.getElementById('validationTooltip03').addEventListener('change', function() {
+    var inputValue = parseInt(this.value);
+    if (inputValue < 0) {
+      this.value = 0;
+    }
+  });
+
+  function showMessage() {
+    alert("成功送出資料！");
+  }
+
+  function previewImages(event) {
+    var preview = document.getElementById('imagePreview');
+    preview.innerHTML = '';
+
+    var files = event.target.files;
+
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (event) {
+        var img = document.createElement('img');
+        img.src = event.target.result;
+        img.style.maxWidth = '100px'; // 調整圖片大小，以適應您的頁面佈局
+
+        var imageContainer = document.createElement('div');
+        imageContainer.appendChild(img);
+        preview.appendChild(imageContainer);
+      }
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+</html>

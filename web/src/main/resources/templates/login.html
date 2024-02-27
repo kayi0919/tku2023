@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <script th:src="@{/js/bootstrap.min.js}" ></script>
+
+        <style>
+            .centered-form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+        </style>
+    </head>
+
+    <body style="padding: 15px; background-color: #fffab9;">
+    <div class="container">
+        <div class="centered-form">
+            <div class="col-md-6">
+                <form th:action="@{/login}" method="post" class="card p-4"  style="background-color: #87cefa;">
+                    <div class="form-group" >
+                        <label for="username">帳號：</label>
+                        <input type="text" class="form-control" name="username" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密碼：</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">登入</button>
+                        <a href="/register" class="btn btn-secondary">註冊帳號</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </body>
+
+</html>
